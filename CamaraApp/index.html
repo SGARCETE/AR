@@ -45,7 +45,14 @@
         </nav>
 	<!-- creas la escena -->
     <a-scene embedded arjs='trackingMethod: best;'>
+
+        <a-assets>
+            <a-asset-item id="modelo" src="modelo3D_CCUNGS_SinFondo001.dae"></a-asset-item>
+        </a-assets>
+
         <a-anchor hit-testing-enabled='true'>
+
+
 
             <a-box id="aCubo" position='0 1 0' color="#FFC65D" visible="false"></a-box>
 			
