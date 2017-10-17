@@ -35,6 +35,12 @@
                     </a>
                 </li>
                 <li>
+                    <a onclick="mostrarModelo();">
+                        <span>3D</span>
+                        <i class="icon-doc"></i>
+                    </a>
+                </li>
+                <li>
                     <a onclick="mostrarTodo();">
                         <span>Todo</span>
                         <i class="icon-size-fullscreen"></i>
@@ -51,8 +57,10 @@
         </a-assets>
 
         <a-anchor hit-testing-enabled='true'>
+        <!--&lt;!&ndash;<a-anchor hit-testing-enabled='true'>&ndash;&gt; TODO Puede ser muy útil para mas adelante, te pone la figura donde tocas.-->
 
-
+            <a-collada-model id="modelo" src="#modelo" position="0.5 0 0" rotation="0 10 0"
+                             scale="0.3 0.3 0.3" shadow="cast:true" visible="false"></a-collada-model>
 
             <a-box id="aCubo" position='0 1 0' color="#FFC65D" visible="false"></a-box>
 			
@@ -78,18 +86,22 @@
 	var esfera = document.getElementById('aEsfera');
 	var cubo = document.getElementById('aCubo');
 	var sonido = document.getElementById('aSonido');
+    var modelo = document.getElementById('modelo');
 	function lesionarAGago() {
 		var esfera = document.getElementById('aEsfera');
 		var cubo = document.getElementById('aCubo');
+        var modelo = document.getElementById('modelo');
 		var boton = document.getElementById('btnIniciarCamara');
 		if (boton.value === "Toca a Gago") {
 			boton.value = "Mas despacio que se lesiona";
 			esfera.setAttribute('visible', 'true');
-			cubo.setAttribute('visible', 'false');			
-		} else {
+			cubo.setAttribute('visible', 'false');
+            modelo.setAttribute('visible', 'true');
+        } else {
 			boton.value = "Toca a Gago";
 			esfera.setAttribute('visible', 'false');
 			cubo.setAttribute('visible', 'true');
+            modelo.setAttribute('visible', 'true');
 		}
 		var sceneEl = document.querySelector('a-scene');
 	}
@@ -97,24 +109,34 @@
 	function mostrarEsfera() {
 		sonido.removeAttribute('sound');
 		esfera.setAttribute('visible', 'true');
+        modelo.setAttribute('visible', 'false');
 		cubo.setAttribute('visible', 'false');
 	}
 	
 	function mostrarCubo() {
 		sonido.removeAttribute('sound');
 		esfera.setAttribute('visible', 'false');
+        modelo.setAttribute('visible', 'true');
 		cubo.setAttribute('visible', 'true');
 	}
 	
 	function emitirSonido() {
-		//alert("Esta funcionalidad aún no está reallizada.");
-		sonido.setAttribute('sound', 'src: url(res/mario.mpeg); autoplay: true');
-	}
+        //alert("Esta funcionalidad aún no está reallizada.");
+        sonido.setAttribute('sound', 'src: url(res/mario.mpeg); autoplay: true');
+    }
+
+    function mostrarModelo() {
+        sonido.removeAttribute('sound');
+        esfera.setAttribute('visible', 'false');
+        cubo.setAttribute('visible', 'false');
+        modelo.setAttribute('visible', 'true');
+    }
 	
 	function mostrarTodo() {
 		sonido.setAttribute('sound', 'src: url(res/mario.mpeg); autoplay: true');
 		esfera.setAttribute('visible', 'true');
 		cubo.setAttribute('visible', 'true');
+        modelo.setAttribute('visible', 'true');
 	}
 </script>
 </body>
